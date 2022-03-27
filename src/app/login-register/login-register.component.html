@@ -1,0 +1,18 @@
+<div class="container-main">
+    <h2>Login to existing account or register new user</h2>
+    <div class="container-buttons">
+        <span class="btn btn-primary btn-lg btn-block" (click)="onSelect('login')">Login</span>
+        <span class="btn btn-primary btn-lg btn-block" (click)="onSelect('register')">Register</span>
+    </div>
+    <div class="container-form">
+        <div *ngIf="choice === 'login'">
+            <h3 class="text-center">Login form</h3>
+            <app-login></app-login>
+        </div>
+        <div *ngIf="choice === 'register'">
+            <h3 class="text-center">Register</h3>
+            <app-register></app-register>
+        </div>
+
+    </div>
+</div>
