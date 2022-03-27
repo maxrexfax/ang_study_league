@@ -6,8 +6,21 @@
     </div>
     <div class="form-group">
         <label for="firstName">First name</label>
-        <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="Enter first name">
+        <input type="text" class="form-control" [(ngModel)]="user.firstName" id="firstName" name="firstName" aria-describedby="firstNameHelp" placeholder="Enter first name" required minlength="4" appForbiddenName="bob" #firstName="ngModel" [ngClass]="{'class_success': (firstName.dirty || firstName.touched), 'class_error' : firstName.invalid && (firstName.dirty || firstName.touched) }">
         <small id="firstNameHelp" class="form-text text-muted">Please enter your FIRST name.</small>
+    </div>
+    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
+
+        <div *ngIf="firstName.errors?.['required']">
+            First Name is required.
+        </div>
+        <div *ngIf="firstName.errors?.['minlength']">
+            Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="firstName.errors?.['forbiddenName']">
+            Name cannot be Bob.
+        </div>
+
     </div>
     <div class="form-group">
         <label for="lastName">Last name</label>
